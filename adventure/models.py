@@ -23,6 +23,16 @@ class Vehicle(models.Model):
     def can_start(self) -> bool:
         return self.vehicle_type.max_capacity >= self.passengers
 
+    def get_distribution(self) -> list:
+        PASSENGERS_PER_ROW = 2
+        rows_integer = self.passengers//PASSENGERS_PER_ROW
+        rows_module = self.passengers%PASSENGERS_PER_ROW
+        distribution_matrix = [[True for seat in range(PASSENGERS_PER_ROW)] for row in range(rows_integer)]
+        if rows_module != 0:
+            distribution_matrix.append([True for seat in range(rows_module)] +
+                    [False for seat in range(PASSENGERS_PER_ROW - rows_module)])
+        return distribution_matrix
+
 
 class Journey(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
