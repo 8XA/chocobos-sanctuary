@@ -130,8 +130,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Your Project API",
-    "DESCRIPTION": "Your project description",
+    "TITLE": "Chocobo's Jeep Booking Platform",
+    "DESCRIPTION": "A booking for the Chocobo's Sanctuary", 
     "VERSION": "1.0.0",
     # OTHER SETTINGS
 }
