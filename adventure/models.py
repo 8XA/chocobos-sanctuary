@@ -41,3 +41,21 @@ class Journey(models.Model):
 
     def __str__(self) -> str:
         return f"{self.vehicle.name} ({self.start} - {self.end})"
+
+
+def validate_number_plate(number_plate):
+    if not isinstance(number_plate, str):
+        validation = False
+    else:
+        elements = number_plate.split('-')
+        validation = len(elements) == 3 and all([
+            #Three pairs validation
+            len([element for element in elements if len(element) == 2]) == len(elements),
+            #Only letters in the first pair validation
+            elements[0].isalpha(),
+            #Uppercase validation: it is a plus requirement and it can be just commented
+            elements[0].isupper(),
+            #Second and third pair only digits validation
+            elements[1].isdigit() and elements[2].isdigit()
+        ])
+    return validation
