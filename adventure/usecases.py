@@ -3,6 +3,8 @@ from __future__ import annotations
 from .notifiers import Notifier
 from .repositories import JourneyRepository
 
+from adventure import models
+
 
 class StartJourney:
     def __init__(self, repository: JourneyRepository, notifier: Notifier):
@@ -25,3 +27,8 @@ class StartJourney:
 
     class CantStart(Exception):
         pass
+
+
+class StopJourney:
+    def __init__(self, journey, end_date):
+        journey.end = end_date
