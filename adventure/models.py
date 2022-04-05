@@ -42,6 +42,9 @@ class Journey(models.Model):
     def __str__(self) -> str:
         return f"{self.vehicle.name} ({self.start} - {self.end})"
 
+    def is_finished(self):
+        return self.end not in ['', None]
+
 
 def validate_number_plate(number_plate):
     if not isinstance(number_plate, str):
